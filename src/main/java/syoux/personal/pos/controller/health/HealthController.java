@@ -1,4 +1,4 @@
-package syoux.personal.pos.controller;
+package syoux.personal.pos.controller.health;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +11,10 @@ public class HealthController {
   private ICityService cityService;
 
   @GetMapping("/")
-  public String index() {
-    var city = cityService.first();
+  public HealthResponse index() {
+    var body = new HealthResponse();
+    body.setMessage("Hello! I'm running in " + cityService.first() + " City.");
 
-    return "Hello! I'm running in " + city + " City.";
+    return body;
   }
 }
